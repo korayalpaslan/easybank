@@ -1,0 +1,157 @@
+
+
+.header {
+
+    // Hamburger Menu Style
+
+    &.open {
+
+    .overlay {
+        visibility: visible;
+        animation: fade-in 300ms ease-in-out forwards;
+        
+    }
+
+    .header__toggle {
+
+        > span:first-child {
+            transform: rotate(45deg);
+        }
+        > span:nth-child(2) {
+            opacity: 0;
+        }
+        > span:last-child {
+            transform: rotate(-45deg);
+        }
+
+    }
+
+    .header__menu {
+        visibility: visible;
+    }
+
+    }
+
+    .overlay {
+    visibility: hidden;
+    background-image: linear-gradient($darkblue,transparent);
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 2;
+    animation: fade-out 300ms ease-in-out forwards;
+    }
+
+    nav {
+        position: relative;
+        background-color: $white;
+        padding-top: 1.0625rem;
+        padding-bottom: 1.0625rem;
+        z-index: 3;
+    }
+
+    &__logo {
+
+        img {
+            width: 8.8125rem;
+            height: 1.375rem;
+        }
+    }
+
+    &__toggle {
+
+        > span { /* use > to make specific only these spans elements*/
+            display: block;
+            width: 26px;
+            height: 2px;
+            background-color: $darkblue;
+            transition: all 300ms ease-in-out;
+            transform-origin: 3px 1px;
+
+            &:not(:last-child){
+                margin-bottom: 5px;
+            }
+        }
+
+    }
+
+    &__menu {
+        background-color: $white;
+        padding: 1.625rem;
+        margin: 1.5rem 1.5rem 0 1.5rem;
+        border-radius: 5px;
+        position: fixed;
+        z-index: 2;
+        width: calc(100% - 3rem);
+        visibility: hidden;
+        
+
+        a {
+            display: block;
+            text-align: center;
+            color: $darkblue;
+            padding: 0.625rem;
+        }
+
+    }
+    
+    &__links {
+
+        a {
+            position: relative; // for absolute poseudo before element
+            font-size: $fontsize-sm;
+            color: $grayishblue;
+            transition: color 200ms ease-in-out;
+            transition: opacity 300ms ease-in-out;
+
+            @include breakpoint-up(large) {
+                font-size: $fontsize-lg;            
+            }
+
+            &:not(:last-child){
+                margin-right: 32px;
+            }
+
+            &::before {
+                content: " ";
+                position: absolute;
+                display: block;
+                height: 5px;
+                background: linear-gradient(to right, $limegreen, $brightcyan);
+                left: 0;
+                right: 0;
+                bottom: -30px;
+                opacity: 0;
+                transition: opacity 300ms ease-in-out;
+                
+            }
+
+            &:hover {
+                color: $darkblue;
+                
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__cta {
+        font-size: $fontsize-sm;
+        color: $white;
+        transition: opacity 300ms ease-in-out;
+
+        @include breakpoint-up(large) {
+            font-size: $fontsize-lg;            
+        }
+
+        &:hover{
+            opacity: 0.75;
+        }
+        
+    }
+
+}
+
